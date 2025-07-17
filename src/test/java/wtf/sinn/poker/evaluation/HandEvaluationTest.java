@@ -83,11 +83,9 @@ class HandEvaluationTest {
                     new Card(CardSuit.HEARTS, CardValue.THREE)
             );
 
-            final var expected = new HandRank(Rank.FOUR_OF_A_KIND);
-
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isEqualTo(expected);
+            then(actual).isNull();
         }
     }
 }

@@ -48,7 +48,10 @@ public class HandEvaluation {
     private static boolean isFourOfAKind(List<Card> hand) {
         final var cardsGroupedByValue = hand.stream()
                 .collect(Collectors.groupingBy(Card::cardValue,
-                        Collectors.counting()));
+                        Collectors.collectingAndThen(
+                                Collectors.mapping(Card::cardSuit, Collectors.toSet()),
+                                set -> (long) set.size()
+                        )));
 
         return cardsGroupedByValue.containsValue(4L);
     }
