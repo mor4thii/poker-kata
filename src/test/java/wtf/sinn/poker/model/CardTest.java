@@ -1,4 +1,4 @@
-package wtf.sinn.model;
+package wtf.sinn.poker.model;
 
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package wtf.sinn.model;
+package wtf.sinn.poker.model;
 
 public enum CardValue {
     TWO(2), THREE(3), FOUR(4), FIVE(5),
