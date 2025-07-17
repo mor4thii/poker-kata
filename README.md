@@ -14,6 +14,8 @@ To run the test suite, execute the following.
 mvn clean verify
 ```
 
+If you use IntelliJ IDEA as IDE, you can also use the provided run configurations, like `[clean test] poker-kata`
+
 ## Poker rules description
 
 A poker deck contains 52 cards - each card has a suit which is one of clubs, diamonds, hearts, or spades (denoted C, D,
