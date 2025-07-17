@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- Java 24 - if you use [sdkman](https://sdkman.io/), there is a `.sdkmanrc` file that specifies the exact JDK used.
+- Java 21 - if you use [sdkman](https://sdkman.io/), there is a `.sdkmanrc` file that specifies the exact JDK used.
 - Maven ~= 3.9.9
 
 ## Build and run this project
