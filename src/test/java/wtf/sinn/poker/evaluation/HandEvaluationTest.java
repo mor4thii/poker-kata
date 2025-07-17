@@ -87,5 +87,22 @@ class HandEvaluationTest {
 
             then(actual).isNull();
         }
+
+        @Test
+        void should_detect_full_house() {
+            final var hand = List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.CLUBS, CardValue.TWO),
+                    new Card(CardSuit.SPADES, CardValue.TWO),
+                    new Card(CardSuit.HEARTS, CardValue.THREE),
+                    new Card(CardSuit.CLUBS, CardValue.THREE)
+            );
+
+            final var expected = new HandRank(Rank.FULL_HOUSE);
+
+            final var actual = handEvaluation.evaluate(hand);
+
+            then(actual).isEqualTo(expected);
+        }
     }
 }
