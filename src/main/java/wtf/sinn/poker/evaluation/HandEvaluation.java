@@ -1,10 +1,12 @@
 package wtf.sinn.poker.evaluation;
 
 import wtf.sinn.poker.model.Card;
+import wtf.sinn.poker.model.CardValue;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class HandEvaluation {
@@ -14,6 +16,9 @@ public class HandEvaluation {
         }
         if (isFourOfAKind(hand)) {
             return new HandRank(Rank.FOUR_OF_A_KIND);
+        }
+        if (isFullHouse(hand)) {
+            return new HandRank(Rank.FULL_HOUSE);
         }
 
         //TODO Think about what to do if no HandRank can be calculated
@@ -46,13 +51,23 @@ public class HandEvaluation {
     }
 
     private static boolean isFourOfAKind(List<Card> hand) {
-        final var cardsGroupedByValue = hand.stream()
+        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
+
+        return cardsGroupedByValue.containsValue(4L);
+    }
+
+    private static Map<CardValue, Long> getCardsGroupedByValue(List<Card> hand) {
+        return hand.stream()
                 .collect(Collectors.groupingBy(Card::cardValue,
                         Collectors.collectingAndThen(
                                 Collectors.mapping(Card::cardSuit, Collectors.toSet()),
                                 set -> (long) set.size()
                         )));
+    }
 
-        return cardsGroupedByValue.containsValue(4L);
+    private boolean isFullHouse(List<Card> hand) {
+        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
+
+        return cardsGroupedByValue.containsValue(3L) && cardsGroupedByValue.containsValue(2L);
     }
 }
