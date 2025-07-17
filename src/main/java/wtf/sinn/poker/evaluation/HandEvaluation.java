@@ -1,14 +1,23 @@
 package wtf.sinn.poker.evaluation;
 
 import wtf.sinn.poker.model.Card;
+import wtf.sinn.poker.model.HandRank;
+import wtf.sinn.poker.model.Rank;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class HandEvaluation {
-    // TODO Change return type to something actually representing an evaluation result
-    public boolean evaluate(List<Card> hand) {
-        return isStraightFlush(hand) || isFourOfAKind(hand);
+    public HandRank evaluate(List<Card> hand) {
+        if (isStraightFlush(hand)) {
+            return new HandRank(Rank.STRAIGHT_FLUSH);
+        }
+        if (isFourOfAKind(hand)) {
+            return new HandRank(Rank.FOUR_OF_A_KIND);
+        }
+
+        //TODO Think about what to do if no HandRank can be calculated
+        return null;
     }
 
     private boolean isStraightFlush(List<Card> hand) {

@@ -5,9 +5,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-import wtf.sinn.poker.model.Card;
-import wtf.sinn.poker.model.CardSuit;
-import wtf.sinn.poker.model.CardValue;
+import wtf.sinn.poker.model.*;
 
 import java.util.List;
 
@@ -35,9 +33,11 @@ class HandEvaluationTest {
                     new Card(cardSuit, CardValue.SIX)
             );
 
+            final var expected = new HandRank(Rank.STRAIGHT_FLUSH);
+
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isTrue();
+            then(actual).isEqualTo(expected);
         }
 
         @ParameterizedTest
@@ -53,7 +53,7 @@ class HandEvaluationTest {
 
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isFalse();
+            then(actual).isNull();
         }
 
         @Test
@@ -66,9 +66,11 @@ class HandEvaluationTest {
                     new Card(CardSuit.HEARTS, CardValue.THREE)
             );
 
+            final var expected = new HandRank(Rank.FOUR_OF_A_KIND);
+
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isTrue();
+            then(actual).isEqualTo(expected);
         }
 
         @Test
@@ -81,9 +83,11 @@ class HandEvaluationTest {
                     new Card(CardSuit.HEARTS, CardValue.THREE)
             );
 
+            final var expected = new HandRank(Rank.FOUR_OF_A_KIND);
+
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isFalse();
+            then(actual).isEqualTo(expected);
         }
     }
 }
