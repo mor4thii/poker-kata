@@ -9,6 +9,18 @@ public class HandEvaluation {
     public boolean evaluate(List<Card> hand) {
         final var suitAtHand = hand.getFirst().cardSuit();
 
-        return hand.stream().allMatch(it -> it.cardSuit().equals(suitAtHand));
+        final var sortedValues = hand.stream()
+                .map(it -> it.cardValue().getValue())
+                .sorted()
+                .toList();
+
+        int min = sortedValues.getFirst();
+        int max = sortedValues.getLast();
+
+        // Check for uniqueness and strict consecutiveness
+        boolean allUnique = sortedValues.stream().distinct().count() == sortedValues.size();
+        boolean isSequential = (max - min + 1) == sortedValues.size();
+
+        return allUnique && isSequential && hand.stream().allMatch(it -> it.cardSuit().equals(suitAtHand));
     }
 }
