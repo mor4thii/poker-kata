@@ -1,5 +1,19 @@
 # Poker Kata implementation
 
+## Prerequisites
+
+- Java 24 - if you use [sdkman](https://sdkman.io/), there is a `.sdkmanrc` file that specifies the exact JDK used.
+- Maven ~= 3.9.9
+
+## Build and run this project
+
+This project uses Maven. Thus, the well-known lifecycle phases can be used.
+To run the test suite, execute the following.
+
+```shell
+mvn clean verify
+```
+
 ## Poker rules description
 
 A poker deck contains 52 cards - each card has a suit which is one of clubs, diamonds, hearts, or spades (denoted C, D,
