@@ -43,6 +43,29 @@ to highest.
 - Four of a kind: 4 cards with the same value. Ranked by the value of the 4 cards.
 - Straight flush: 5 cards of the same suit with consecutive values. Ranked by the highest card in the hand.
 
+## TODOs
+
+Hand evaluation:
+
+- High Card
+- Pair
+- Two Pairs
+- Three of a Kind
+- Straight
+- Flush
+- Full House ✅
+- Four of a kind ✅
+- Straight flush ✅
+
+Rank comparison (in order of importance):
+
+- Strength of rank as first criterion
+- High card and other rank-specific stuff as secondary criteria, or "lexicographic" comparison
+- Precondition checks for the hand card (assert 5 cards, assert no duplicates)
+- Some corner case tests like simple cheating detection (e.g., duplicate cards)
+- Tinker with new language features like JEP 301 (Enhanced enums) or JEP 361 (Switch Expressions)
+- Performance concerns: Heavy usage of streams, check for repeated same/similar List operations
+
 ## Notes
 
 No input parsing required, it is sufficient to define hands in code/tests, for example as follows.
