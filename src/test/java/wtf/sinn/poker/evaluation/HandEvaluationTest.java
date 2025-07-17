@@ -36,5 +36,20 @@ class HandEvaluationTest {
 
             then(actual).isTrue();
         }
+
+        @Test
+        void should_detect__that_hand_is_not_a_hearts_straight_flush() {
+            final var hand = List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.HEARTS, CardValue.THREE),
+                    new Card(CardSuit.HEARTS, CardValue.FOUR),
+                    new Card(CardSuit.HEARTS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SEVEN)
+            );
+
+            final var actual = handEvaluation.evaluate(hand);
+
+            then(actual).isFalse();
+        }
     }
 }
