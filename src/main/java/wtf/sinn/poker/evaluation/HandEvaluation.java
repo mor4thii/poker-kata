@@ -3,11 +3,15 @@ package wtf.sinn.poker.evaluation;
 import wtf.sinn.poker.model.Card;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class HandEvaluation {
     // TODO Change return type to something actually representing an evaluation result
     public boolean evaluate(List<Card> hand) {
-        return isStraightFlush(hand);
+        final var cardsGroupedByValue = hand.stream()
+                .collect(Collectors.groupingBy(Card::cardValue, Collectors.counting()));
+
+        return isStraightFlush(hand) || cardsGroupedByValue.containsValue(4L);
     }
 
     private boolean isStraightFlush(List<Card> hand) {
