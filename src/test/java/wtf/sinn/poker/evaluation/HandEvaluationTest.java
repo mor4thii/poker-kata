@@ -2,7 +2,8 @@ package wtf.sinn.poker.evaluation;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 import wtf.sinn.poker.model.Card;
 import wtf.sinn.poker.model.CardSuit;
 import wtf.sinn.poker.model.CardValue;
@@ -22,14 +23,15 @@ class HandEvaluationTest {
 
     @Nested
     class The_HandEvaluation {
-        @Test
-        void should_detect_a_hearts_straight_flush() {
+        @ParameterizedTest
+        @EnumSource(CardSuit.class)
+        void should_detect_a_hearts_straight_flush(CardSuit cardSuit) {
             final var hand = List.of(
-                    new Card(CardSuit.HEARTS, CardValue.TWO),
-                    new Card(CardSuit.HEARTS, CardValue.THREE),
-                    new Card(CardSuit.HEARTS, CardValue.FOUR),
-                    new Card(CardSuit.HEARTS, CardValue.FIVE),
-                    new Card(CardSuit.HEARTS, CardValue.SIX)
+                    new Card(cardSuit, CardValue.TWO),
+                    new Card(cardSuit, CardValue.THREE),
+                    new Card(cardSuit, CardValue.FOUR),
+                    new Card(cardSuit, CardValue.FIVE),
+                    new Card(cardSuit, CardValue.SIX)
             );
 
             final var actual = handEvaluation.evaluate(hand);
@@ -37,14 +39,15 @@ class HandEvaluationTest {
             then(actual).isTrue();
         }
 
-        @Test
-        void should_detect__that_hand_is_not_a_hearts_straight_flush() {
+        @ParameterizedTest
+        @EnumSource(CardSuit.class)
+        void should_detect_that_hand_is_not_a_hearts_straight_flush(CardSuit cardSuit) {
             final var hand = List.of(
-                    new Card(CardSuit.HEARTS, CardValue.TWO),
-                    new Card(CardSuit.HEARTS, CardValue.THREE),
-                    new Card(CardSuit.HEARTS, CardValue.FOUR),
-                    new Card(CardSuit.HEARTS, CardValue.FIVE),
-                    new Card(CardSuit.HEARTS, CardValue.SEVEN)
+                    new Card(cardSuit, CardValue.TWO),
+                    new Card(cardSuit, CardValue.THREE),
+                    new Card(cardSuit, CardValue.FOUR),
+                    new Card(cardSuit, CardValue.FIVE),
+                    new Card(cardSuit, CardValue.SEVEN)
             );
 
             final var actual = handEvaluation.evaluate(hand);
