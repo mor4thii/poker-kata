@@ -8,10 +8,7 @@ import java.util.stream.Collectors;
 public class HandEvaluation {
     // TODO Change return type to something actually representing an evaluation result
     public boolean evaluate(List<Card> hand) {
-        final var cardsGroupedByValue = hand.stream()
-                .collect(Collectors.groupingBy(Card::cardValue, Collectors.counting()));
-
-        return isStraightFlush(hand) || cardsGroupedByValue.containsValue(4L);
+        return isStraightFlush(hand) || isFourOfAKind(hand);
     }
 
     private boolean isStraightFlush(List<Card> hand) {
@@ -37,5 +34,11 @@ public class HandEvaluation {
         boolean isSequential = (max - min + 1) == sortedValues.size();
 
         return allUnique && isSequential;
+    }
+
+    private static boolean isFourOfAKind(List<Card> hand) {
+        final var cardsGroupedByValue = hand.stream()
+                .collect(Collectors.groupingBy(Card::cardValue, Collectors.counting()));
+        return cardsGroupedByValue.containsValue(4L);
     }
 }
