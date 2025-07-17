@@ -1,73 +1,16 @@
 package wtf.sinn.poker.evaluation;
 
 import wtf.sinn.poker.model.Card;
-import wtf.sinn.poker.model.CardValue;
 import wtf.sinn.poker.model.HandRank;
-import wtf.sinn.poker.model.Rank;
 
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 public class HandEvaluation {
     public HandRank evaluate(List<Card> hand) {
-        if (isStraightFlush(hand)) {
-            return new HandRank(Rank.STRAIGHT_FLUSH);
-        }
-        if (isFourOfAKind(hand)) {
-            return new HandRank(Rank.FOUR_OF_A_KIND);
-        }
-        if (isFullHouse(hand)) {
-            return new HandRank(Rank.FULL_HOUSE);
-        }
+        final var fullHouseRanker = new FullHouseRanker(null);
+        final var fourOfAKindRanker = new FourOfAKindRanker(fullHouseRanker);
+        final var straightFlushRanker = new StraightFlushRanker(fourOfAKindRanker);
 
-        //TODO Think about what to do if no HandRank can be calculated
-        return null;
-    }
-
-    private boolean isStraightFlush(List<Card> hand) {
-        return hasOnlyCardsOfSameSuit(hand) && isUniqueAndSequential(hand);
-    }
-
-    private static boolean hasOnlyCardsOfSameSuit(List<Card> hand) {
-        final var suitAtHand = hand.getFirst().cardSuit();
-
-        return hand.stream().allMatch(it -> it.cardSuit().equals(suitAtHand));
-    }
-
-    private boolean isUniqueAndSequential(List<Card> hand) {
-        final var sortedValues = hand.stream()
-                .map(it -> it.cardValue().getValue())
-                .sorted()
-                .toList();
-
-        int min = sortedValues.getFirst();
-        int max = sortedValues.getLast();
-
-        boolean allUnique = sortedValues.stream().distinct().count() == sortedValues.size();
-        boolean isSequential = (max - min + 1) == sortedValues.size();
-
-        return allUnique && isSequential;
-    }
-
-    private static boolean isFourOfAKind(List<Card> hand) {
-        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
-
-        return cardsGroupedByValue.containsValue(4L);
-    }
-
-    private static Map<CardValue, Long> getCardsGroupedByValue(List<Card> hand) {
-        return hand.stream()
-                .collect(Collectors.groupingBy(Card::cardValue,
-                        Collectors.collectingAndThen(
-                                Collectors.mapping(Card::cardSuit, Collectors.toSet()),
-                                set -> (long) set.size()
-                        )));
-    }
-
-    private boolean isFullHouse(List<Card> hand) {
-        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
-
-        return cardsGroupedByValue.containsValue(3L) && cardsGroupedByValue.containsValue(2L);
+        return straightFlushRanker.evaluate(hand);
     }
 }

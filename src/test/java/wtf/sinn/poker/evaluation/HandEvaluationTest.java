@@ -51,9 +51,11 @@ class HandEvaluationTest {
                     new Card(cardSuit, CardValue.SEVEN)
             );
 
+            final var expected = new HandRank(Rank.NONE);
+
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isNull();
+            then(actual).isEqualTo(expected);
         }
 
         @Test
@@ -83,9 +85,11 @@ class HandEvaluationTest {
                     new Card(CardSuit.HEARTS, CardValue.THREE)
             );
 
+            final var expected = new HandRank(Rank.NONE);
+
             final var actual = handEvaluation.evaluate(hand);
 
-            then(actual).isNull();
+            then(actual).isEqualTo(expected);
         }
 
         @Test
