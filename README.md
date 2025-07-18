@@ -59,6 +59,7 @@ Hand evaluation:
 
 Rank comparison (in order of importance):
 
+- Introduce Hand class w/ class invariants "no duplicate cards" and "exactly 5 cards"
 - Strength of rank as first criterion
 - High card and other rank-specific stuff as secondary criteria, or "lexicographic" comparison
 - Precondition checks for the hand card (assert 5 cards, assert no duplicates)
