@@ -1,4 +1,4 @@
-package wtf.sinn.poker.evaluation;
+package wtf.sinn.poker.ranking;
 
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;

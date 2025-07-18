@@ -1,4 +1,4 @@
-package wtf.sinn.poker.evaluation;
+package wtf.sinn.poker.ranking;
 
 import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;

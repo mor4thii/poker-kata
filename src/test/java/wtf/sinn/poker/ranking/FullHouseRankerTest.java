@@ -1,4 +1,4 @@
-package wtf.sinn.poker.evaluation;
+package wtf.sinn.poker.ranking;
 
 import org.junit.jupiter.api.Test;
 import wtf.sinn.poker.model.*;
@@ -7,24 +7,25 @@ import java.util.List;
 
 import static org.assertj.core.api.BDDAssertions.then;
 
-class HighCardRankerTest {
+class FullHouseRankerTest {
 
-    private final HighCardRanker highCardRanker = new HighCardRanker(null);
+    private final FullHouseRanker fullHouseRanker = new FullHouseRanker(null);
 
     @Test
-    void should_detect_high_card() {
+    void should_detect_full_house() {
         final var hand = new Hand(List.of(
                 new Card(CardSuit.HEARTS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.TWO),
                 new Card(CardSuit.SPADES, CardValue.TWO),
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.THREE)
+                new Card(CardSuit.HEARTS, CardValue.THREE),
+                new Card(CardSuit.CLUBS, CardValue.THREE)
         ));
 
-        final var expected = new HandRank(Rank.HIGH_CARD);
+        final var expected = new HandRank(Rank.FULL_HOUSE);
 
-        final var actual = highCardRanker.evaluate(hand);
+        final var actual = fullHouseRanker.evaluate(hand);
 
         then(actual).isEqualTo(expected);
     }
+
 }

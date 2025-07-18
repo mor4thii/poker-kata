@@ -1,21 +1,21 @@
-package wtf.sinn.poker.evaluation;
+package wtf.sinn.poker.ranking;
 
 import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
-public class ThreeOfAKindRanker extends HandRanker {
-    protected ThreeOfAKindRanker(HandRanker next) {
+public class FlushRanker extends HandRanker {
+    protected FlushRanker(HandRanker next) {
         super(next);
     }
 
     @Override
     protected boolean canHandle(Hand hand) {
-        return hand.getCardCountByValue().containsValue(3L);
+        return hand.hasOnlyCardsOfSameSuit();
     }
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.THREE_OF_A_KIND);
+        return new HandRank(Rank.FLUSH);
     }
 }
