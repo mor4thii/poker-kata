@@ -18,6 +18,6 @@ final class StraightRanker extends HandRanker {
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.STRAIGHT, List.of());
+        return new HandRank(Rank.STRAIGHT, List.of(hand.highestCardValue()));
     }
 }
