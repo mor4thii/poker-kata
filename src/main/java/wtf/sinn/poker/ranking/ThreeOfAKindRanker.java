@@ -4,8 +4,6 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
-import java.util.List;
-
 final class ThreeOfAKindRanker extends HandRanker {
     ThreeOfAKindRanker(HandRanker next) {
         super(next);
@@ -18,6 +16,6 @@ final class ThreeOfAKindRanker extends HandRanker {
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.THREE_OF_A_KIND, List.of());
+        return new HandRank(Rank.THREE_OF_A_KIND, hand.getCardCountPerValue().get(3L));
     }
 }
