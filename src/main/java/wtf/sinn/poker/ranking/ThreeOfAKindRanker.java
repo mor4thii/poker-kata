@@ -4,8 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
-public class ThreeOfAKindRanker extends HandRanker {
-    protected ThreeOfAKindRanker(HandRanker next) {
+final class ThreeOfAKindRanker extends HandRanker {
+    ThreeOfAKindRanker(HandRanker next) {
         super(next);
     }
 

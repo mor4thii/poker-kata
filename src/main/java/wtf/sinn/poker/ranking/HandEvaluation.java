@@ -3,13 +3,11 @@ package wtf.sinn.poker.ranking;
 import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 
-// TODO Improve code here. This is not meaningfully testable, and might even be unnecessary
-public class HandEvaluation {
-    public HandRank evaluate(Hand hand) {
-        final var fullHouseRanker = new FullHouseRanker(null);
-        final var fourOfAKindRanker = new FourOfAKindRanker(fullHouseRanker);
-        final var straightFlushRanker = new StraightFlushRanker(fourOfAKindRanker);
+final class HandEvaluation {
+    // TODO: Replace by builder
+    static final HandRanker RANKING_CHAIN = new StraightFlushRanker(new FourOfAKindRanker(new FullHouseRanker(new FlushRanker(new StraightRanker(new ThreeOfAKindRanker(new TwoPairsRanker(new PairRanker(new HighCardRanker(null)))))))));
 
-        return straightFlushRanker.evaluate(hand);
+    public HandRank evaluate(Hand hand) {
+        return RANKING_CHAIN.evaluate(hand);
     }
 }

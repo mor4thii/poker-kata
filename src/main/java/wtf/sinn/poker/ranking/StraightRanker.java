@@ -4,8 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
-public class StraightRanker extends HandRanker {
-    protected StraightRanker(HandRanker next) {
+final class StraightRanker extends HandRanker {
+    StraightRanker(HandRanker next) {
         super(next);
     }
 

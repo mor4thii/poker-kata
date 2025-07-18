@@ -4,7 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
-public abstract class HandRanker {
+abstract sealed class HandRanker
+        permits FlushRanker, FourOfAKindRanker, FullHouseRanker, HighCardRanker, PairRanker, StraightFlushRanker, StraightRanker, ThreeOfAKindRanker, TwoPairsRanker {
     protected final HandRanker next;
 
     protected HandRanker(HandRanker next) {
