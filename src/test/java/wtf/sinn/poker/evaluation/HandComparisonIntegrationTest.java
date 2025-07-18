@@ -21,25 +21,32 @@ public class HandComparisonIntegrationTest {
     class The_HandComparison {
         @Test
         void should_detect_straight_flushes_as_winner_hand() {
-            final var straightFlushHand = new Hand(List.of(
-                    new Card(CardSuit.HEARTS, CardValue.TWO),
-                    new Card(CardSuit.HEARTS, CardValue.THREE),
-                    new Card(CardSuit.HEARTS, CardValue.FOUR),
-                    new Card(CardSuit.HEARTS, CardValue.FIVE),
-                    new Card(CardSuit.HEARTS, CardValue.SIX)
-            ));
-
-            final var lowerRankedHand = new Hand(List.of(
-                    new Card(CardSuit.HEARTS, CardValue.TWO),
-                    new Card(CardSuit.HEARTS, CardValue.FOUR),
-                    new Card(CardSuit.HEARTS, CardValue.SIX),
-                    new Card(CardSuit.DIAMONDS, CardValue.KING),
-                    new Card(CardSuit.CLUBS, CardValue.ACE)
-            ));
+            final var straightFlushHand = lowestStraightFlushHand();
+            final var lowerRankedHand = kingHighCardHand();
 
             final var actual = handComparison.determineWinner(straightFlushHand, lowerRankedHand);
 
             then(actual).isEqualTo(straightFlushHand);
         }
+    }
+
+    private Hand lowestStraightFlushHand() {
+        return new Hand(List.of(
+                new Card(CardSuit.HEARTS, CardValue.TWO),
+                new Card(CardSuit.HEARTS, CardValue.THREE),
+                new Card(CardSuit.HEARTS, CardValue.FOUR),
+                new Card(CardSuit.HEARTS, CardValue.FIVE),
+                new Card(CardSuit.HEARTS, CardValue.SIX)
+        ));
+    }
+
+    private Hand kingHighCardHand() {
+        return new Hand(List.of(
+                new Card(CardSuit.HEARTS, CardValue.TWO),
+                new Card(CardSuit.HEARTS, CardValue.FOUR),
+                new Card(CardSuit.HEARTS, CardValue.SIX),
+                new Card(CardSuit.DIAMONDS, CardValue.KING),
+                new Card(CardSuit.CLUBS, CardValue.TEN)
+        ));
     }
 }
