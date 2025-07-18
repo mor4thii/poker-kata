@@ -2,6 +2,7 @@ package wtf.sinn.poker.evaluation;
 
 import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
+import wtf.sinn.poker.model.Rank;
 
 public class TwoPairsRanker extends HandRanker {
     protected TwoPairsRanker(HandRanker next) {
@@ -10,11 +11,13 @@ public class TwoPairsRanker extends HandRanker {
 
     @Override
     protected boolean canHandle(Hand hand) {
-        return false;
+        final var cardCountByValue = hand.getCardCountByValue();
+
+        return cardCountByValue.values().stream().filter(it -> Long.valueOf(2L).equals(it)).count() == 2;
     }
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return null;
+        return new HandRank(Rank.TWO_PAIRS);
     }
 }

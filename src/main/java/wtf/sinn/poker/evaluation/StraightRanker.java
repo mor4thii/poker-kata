@@ -2,6 +2,7 @@ package wtf.sinn.poker.evaluation;
 
 import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
+import wtf.sinn.poker.model.Rank;
 
 public class StraightRanker extends HandRanker {
     protected StraightRanker(HandRanker next) {
@@ -10,11 +11,11 @@ public class StraightRanker extends HandRanker {
 
     @Override
     protected boolean canHandle(Hand hand) {
-        return false;
+        return hand.hasSequentialCards();
     }
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return null;
+        return new HandRank(Rank.STRAIGHT);
     }
 }
