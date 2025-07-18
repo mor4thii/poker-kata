@@ -1,10 +1,8 @@
 package wtf.sinn.poker.evaluation;
 
-import wtf.sinn.poker.model.Card;
+import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
-
-import java.util.List;
 
 public class FourOfAKindRanker extends HandRanker {
     protected FourOfAKindRanker(HandRanker next) {
@@ -12,17 +10,17 @@ public class FourOfAKindRanker extends HandRanker {
     }
 
     @Override
-    protected boolean canHandle(List<Card> hand) {
+    protected boolean canHandle(Hand hand) {
         return isFourOfAKind(hand);
     }
 
     @Override
-    protected HandRank buildHandRank(List<Card> hand) {
+    protected HandRank buildHandRank(Hand hand) {
         return new HandRank(Rank.FOUR_OF_A_KIND);
     }
 
-    private static boolean isFourOfAKind(List<Card> hand) {
-        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
+    private static boolean isFourOfAKind(Hand hand) {
+        final var cardsGroupedByValue = hand.getCardsGroupedByValue();
 
         return cardsGroupedByValue.containsValue(4L);
     }

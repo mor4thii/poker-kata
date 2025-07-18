@@ -15,13 +15,13 @@ class StraightFlushRankerTest {
     @ParameterizedTest
     @EnumSource(CardSuit.class)
     void should_detect_a_hearts_straight_flush(CardSuit cardSuit) {
-        final var hand = List.of(
+        final var hand = new Hand(List.of(
                 new Card(cardSuit, CardValue.TWO),
                 new Card(cardSuit, CardValue.THREE),
                 new Card(cardSuit, CardValue.FOUR),
                 new Card(cardSuit, CardValue.FIVE),
                 new Card(cardSuit, CardValue.SIX)
-        );
+        ));
 
         final var expected = new HandRank(Rank.STRAIGHT_FLUSH);
 
@@ -33,13 +33,13 @@ class StraightFlushRankerTest {
     @ParameterizedTest
     @EnumSource(CardSuit.class)
     void should_detect_that_hand_is_not_a_hearts_straight_flush(CardSuit cardSuit) {
-        final var hand = List.of(
+        final var hand = new Hand(List.of(
                 new Card(cardSuit, CardValue.TWO),
                 new Card(cardSuit, CardValue.THREE),
                 new Card(cardSuit, CardValue.FOUR),
                 new Card(cardSuit, CardValue.FIVE),
                 new Card(cardSuit, CardValue.SEVEN)
-        );
+        ));
 
         final var expected = new HandRank(Rank.NONE);
 

@@ -1,10 +1,8 @@
 package wtf.sinn.poker.evaluation;
 
-import wtf.sinn.poker.model.Card;
+import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
-
-import java.util.List;
 
 public class FullHouseRanker extends HandRanker {
     protected FullHouseRanker(HandRanker next) {
@@ -12,17 +10,17 @@ public class FullHouseRanker extends HandRanker {
     }
 
     @Override
-    protected boolean canHandle(List<Card> hand) {
+    protected boolean canHandle(Hand hand) {
         return isFullHouse(hand);
     }
 
     @Override
-    protected HandRank buildHandRank(List<Card> hand) {
+    protected HandRank buildHandRank(Hand hand) {
         return new HandRank(Rank.FULL_HOUSE);
     }
 
-    private boolean isFullHouse(List<Card> hand) {
-        final var cardsGroupedByValue = getCardsGroupedByValue(hand);
+    private boolean isFullHouse(Hand hand) {
+        final var cardsGroupedByValue = hand.getCardsGroupedByValue();
 
         return cardsGroupedByValue.containsValue(3L) && cardsGroupedByValue.containsValue(2L);
     }

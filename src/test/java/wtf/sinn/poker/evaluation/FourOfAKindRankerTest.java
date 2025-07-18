@@ -13,13 +13,13 @@ class FourOfAKindRankerTest {
 
     @Test
     void should_detect_four_of_a_kind() {
-        final var hand = List.of(
+        final var hand = new Hand(List.of(
                 new Card(CardSuit.HEARTS, CardValue.TWO),
                 new Card(CardSuit.CLUBS, CardValue.TWO),
                 new Card(CardSuit.SPADES, CardValue.TWO),
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.HEARTS, CardValue.THREE)
-        );
+        ));
 
         final var expected = new HandRank(Rank.FOUR_OF_A_KIND);
 
@@ -30,13 +30,13 @@ class FourOfAKindRankerTest {
 
     @Test
     void should_detect_four_of_a_kind_cheaters() {
-        final var hand = List.of(
+        final var hand = new Hand(List.of(
                 new Card(CardSuit.HEARTS, CardValue.TWO),
                 new Card(CardSuit.HEARTS, CardValue.TWO),
                 new Card(CardSuit.SPADES, CardValue.TWO),
                 new Card(CardSuit.DIAMONDS, CardValue.TWO),
                 new Card(CardSuit.HEARTS, CardValue.THREE)
-        );
+        ));
 
         final var expected = new HandRank(Rank.NONE);
 
