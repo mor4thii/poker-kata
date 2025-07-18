@@ -14,6 +14,8 @@ public record Hand(List<Card> cards) {
         if (hasDuplicates(cards)) {
             throw new IllegalArgumentException("A hand must not have duplicates");
         }
+
+        cards = List.copyOf(cards);
     }
 
     public List<CardValue> cardValuesInDescendingOrder() {
