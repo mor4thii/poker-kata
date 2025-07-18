@@ -4,6 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
+import java.util.List;
+
 abstract sealed class HandRanker
         permits FlushRanker, FourOfAKindRanker, FullHouseRanker, HighCardRanker, PairRanker, StraightFlushRanker, StraightRanker, ThreeOfAKindRanker, TwoPairsRanker {
     protected final HandRanker next;
@@ -21,7 +23,7 @@ abstract sealed class HandRanker
             return next.evaluate(hand);
         }
 
-        return new HandRank(Rank.NONE);
+        return new HandRank(Rank.NONE, List.of());
     }
 
     protected abstract boolean canHandle(Hand hand);

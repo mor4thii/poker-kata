@@ -21,7 +21,7 @@ class TwoPairsRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.FOUR)
         ));
 
-        final var expected = new HandRank(Rank.TWO_PAIRS);
+        final var expected = new HandRank(Rank.TWO_PAIRS, List.of(CardValue.THREE, CardValue.TWO, CardValue.FOUR));
 
         final var actual = twoPairsRanker.evaluate(hand);
 

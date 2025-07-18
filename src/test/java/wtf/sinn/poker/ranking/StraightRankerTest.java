@@ -21,7 +21,7 @@ class StraightRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.SIX)
         ));
 
-        final var expected = new HandRank(Rank.STRAIGHT);
+        final var expected = new HandRank(Rank.STRAIGHT, List.of(CardValue.SIX));
 
         final var actual = fourOfAKindRanker.evaluate(hand);
 

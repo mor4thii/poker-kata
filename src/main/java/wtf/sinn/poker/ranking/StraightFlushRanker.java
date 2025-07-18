@@ -4,6 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
+import java.util.List;
+
 final class StraightFlushRanker extends HandRanker {
 
     StraightFlushRanker(HandRanker next) {
@@ -17,7 +19,7 @@ final class StraightFlushRanker extends HandRanker {
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.STRAIGHT_FLUSH);
+        return new HandRank(Rank.STRAIGHT_FLUSH, List.of(hand.highestCardValue()));
     }
 
     private boolean isStraightFlush(Hand hand) {

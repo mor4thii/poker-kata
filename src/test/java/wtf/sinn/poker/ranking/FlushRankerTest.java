@@ -21,7 +21,7 @@ class FlushRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.SIX)
         ));
 
-        final var expected = new HandRank(Rank.FLUSH);
+        final var expected = new HandRank(Rank.FLUSH, List.of(CardValue.ACE, CardValue.KING, CardValue.SIX, CardValue.FOUR, CardValue.TWO));
 
         final var actual = flushRanker.evaluate(hand);
 

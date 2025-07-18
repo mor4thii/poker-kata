@@ -4,6 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
+import java.util.List;
+
 final class FullHouseRanker extends HandRanker {
     FullHouseRanker(HandRanker next) {
         super(next);
@@ -16,7 +18,7 @@ final class FullHouseRanker extends HandRanker {
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.FULL_HOUSE);
+        return new HandRank(Rank.FULL_HOUSE, List.of());
     }
 
     private boolean isFullHouse(Hand hand) {

@@ -26,7 +26,7 @@ public class HandComparisonIntegrationTest {
 
             final var actual = handComparison.determineWinner(straightFlushHand, kingHighCardHand);
 
-            then(actual).isEqualTo(straightFlushHand);
+            then(actual).hasValue(straightFlushHand);
         }
 
         @Test
@@ -36,7 +36,7 @@ public class HandComparisonIntegrationTest {
 
             final var actual = handComparison.determineWinner(straightFlushHand, highestStraightFlushHand);
 
-            then(actual).isEqualTo(highestStraightFlushHand);
+            then(actual).hasValue(highestStraightFlushHand);
         }
     }
 

@@ -21,7 +21,7 @@ class FullHouseRankerTest {
                 new Card(CardSuit.CLUBS, CardValue.THREE)
         ));
 
-        final var expected = new HandRank(Rank.FULL_HOUSE);
+        final var expected = new HandRank(Rank.FULL_HOUSE, List.of(CardValue.TWO));
 
         final var actual = fullHouseRanker.evaluate(hand);
 

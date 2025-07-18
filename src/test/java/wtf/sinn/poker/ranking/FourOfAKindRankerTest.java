@@ -21,7 +21,7 @@ class FourOfAKindRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.THREE)
         ));
 
-        final var expected = new HandRank(Rank.FOUR_OF_A_KIND);
+        final var expected = new HandRank(Rank.FOUR_OF_A_KIND, List.of(CardValue.TWO));
 
         final var actual = fourOfAKindRanker.evaluate(hand);
 

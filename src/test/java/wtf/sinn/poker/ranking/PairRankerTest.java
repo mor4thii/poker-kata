@@ -21,7 +21,7 @@ class PairRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.FIVE)
         ));
 
-        final var expected = new HandRank(Rank.PAIR);
+        final var expected = new HandRank(Rank.PAIR, List.of(CardValue.TWO, CardValue.FIVE, CardValue.FOUR, CardValue.THREE));
 
         final var actual = pairRanker.evaluate(hand);
 

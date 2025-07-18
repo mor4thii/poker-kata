@@ -4,6 +4,8 @@ import wtf.sinn.poker.model.Hand;
 import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
+import java.util.List;
+
 final class TwoPairsRanker extends HandRanker {
     TwoPairsRanker(HandRanker next) {
         super(next);
@@ -18,6 +20,6 @@ final class TwoPairsRanker extends HandRanker {
 
     @Override
     protected HandRank buildHandRank(Hand hand) {
-        return new HandRank(Rank.TWO_PAIRS);
+        return new HandRank(Rank.TWO_PAIRS, List.of());
     }
 }

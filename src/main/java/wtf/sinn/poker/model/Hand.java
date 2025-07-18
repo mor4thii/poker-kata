@@ -1,5 +1,6 @@
 package wtf.sinn.poker.model;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -13,6 +14,13 @@ public record Hand(List<Card> cards) {
         if (hasDuplicates(cards)) {
             throw new IllegalArgumentException("A hand must not have duplicates");
         }
+    }
+
+    public CardValue highestCardValue() {
+        return cards.stream()
+                .map(Card::cardValue)
+                .max(Comparator.comparingInt(CardValue::getValue))
+                .orElseThrow();
     }
 
     public Map<CardValue, Long> getCardCountByValue() {

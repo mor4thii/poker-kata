@@ -23,7 +23,7 @@ class StraightFlushRankerTest {
                 new Card(cardSuit, CardValue.SIX)
         ));
 
-        final var expected = new HandRank(Rank.STRAIGHT_FLUSH);
+        final var expected = new HandRank(Rank.STRAIGHT_FLUSH, List.of(CardValue.SIX));
 
         final var actual = straightFlushRanker.evaluate(hand);
 
@@ -41,7 +41,7 @@ class StraightFlushRankerTest {
                 new Card(cardSuit, CardValue.SEVEN)
         ));
 
-        final var expected = new HandRank(Rank.NONE);
+        final var expected = new HandRank(Rank.NONE, List.of());
 
         final var actual = straightFlushRanker.evaluate(hand);
 

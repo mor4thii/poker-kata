@@ -21,7 +21,7 @@ class HighCardRankerTest {
                 new Card(CardSuit.HEARTS, CardValue.THREE)
         ));
 
-        final var expected = new HandRank(Rank.HIGH_CARD);
+        final var expected = new HandRank(Rank.HIGH_CARD, List.of(CardValue.THREE, CardValue.TWO));
 
         final var actual = highCardRanker.evaluate(hand);
 
