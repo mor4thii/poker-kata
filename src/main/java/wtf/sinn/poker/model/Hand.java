@@ -10,7 +10,9 @@ public record Hand(List<Card> cards) {
             throw new IllegalArgumentException("A hand must consist of 5 cards");
         }
 
-        // TODO detect duplicates
+        if (hasDuplicates(cards)) {
+            throw new IllegalArgumentException("A hand must not have duplicates");
+        }
     }
 
     public Map<CardValue, Long> getCardsGroupedByValue() {
@@ -37,9 +39,13 @@ public record Hand(List<Card> cards) {
         int min = sortedValues.getFirst();
         int max = sortedValues.getLast();
 
-        boolean allUnique = sortedValues.stream().distinct().count() == sortedValues.size();
+        boolean allUnique = !hasDuplicates(this.cards);
         boolean isSequential = (max - min + 1) == sortedValues.size();
 
         return allUnique && isSequential;
+    }
+
+    private static boolean hasDuplicates(List<Card> cards) {
+        return cards.stream().distinct().count() != cards.size();
     }
 }

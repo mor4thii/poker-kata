@@ -27,22 +27,4 @@ class FourOfAKindRankerTest {
 
         then(actual).isEqualTo(expected);
     }
-
-    @Test
-    void should_detect_four_of_a_kind_cheaters() {
-        final var hand = new Hand(List.of(
-                new Card(CardSuit.HEARTS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.TWO),
-                new Card(CardSuit.SPADES, CardValue.TWO),
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.THREE)
-        ));
-
-        final var expected = new HandRank(Rank.NONE);
-
-        final var actual = fourOfAKindRanker.evaluate(hand);
-
-        then(actual).isEqualTo(expected);
-    }
-
 }

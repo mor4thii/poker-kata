@@ -43,5 +43,16 @@ public class HandTest {
                     new Card(CardSuit.HEARTS, CardValue.SEVEN)
             ))).isInstanceOf(IllegalArgumentException.class);
         }
+
+        @Test
+        void should_detect_duplicates() {
+            assertThatThrownBy(() -> new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.HEARTS, CardValue.FOUR),
+                    new Card(CardSuit.HEARTS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SIX)
+            ))).isInstanceOf(IllegalArgumentException.class);
+        }
     }
 }
