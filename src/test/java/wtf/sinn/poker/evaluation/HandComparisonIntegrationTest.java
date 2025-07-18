@@ -22,11 +22,21 @@ public class HandComparisonIntegrationTest {
         @Test
         void should_detect_straight_flushes_as_winner_hand() {
             final var straightFlushHand = lowestStraightFlushHand();
-            final var lowerRankedHand = kingHighCardHand();
+            final var kingHighCardHand = kingHighCardHand();
 
-            final var actual = handComparison.determineWinner(straightFlushHand, lowerRankedHand);
+            final var actual = handComparison.determineWinner(straightFlushHand, kingHighCardHand);
 
             then(actual).isEqualTo(straightFlushHand);
+        }
+
+        @Test
+        void should_detect_the_higher_of_two_straight_flushes_as_winner_hand() {
+            final var straightFlushHand = lowestStraightFlushHand();
+            final var highestStraightFlushHand = highestStraightFlushHand();
+
+            final var actual = handComparison.determineWinner(straightFlushHand, highestStraightFlushHand);
+
+            then(actual).isEqualTo(highestStraightFlushHand);
         }
     }
 
@@ -37,6 +47,16 @@ public class HandComparisonIntegrationTest {
                 new Card(CardSuit.HEARTS, CardValue.FOUR),
                 new Card(CardSuit.HEARTS, CardValue.FIVE),
                 new Card(CardSuit.HEARTS, CardValue.SIX)
+        ));
+    }
+
+    private Hand highestStraightFlushHand() {
+        return new Hand(List.of(
+                new Card(CardSuit.HEARTS, CardValue.TEN),
+                new Card(CardSuit.HEARTS, CardValue.JACK),
+                new Card(CardSuit.HEARTS, CardValue.QUEEN),
+                new Card(CardSuit.HEARTS, CardValue.KING),
+                new Card(CardSuit.HEARTS, CardValue.ACE)
         ));
     }
 
