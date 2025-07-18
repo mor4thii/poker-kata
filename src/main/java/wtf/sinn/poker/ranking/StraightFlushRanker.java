@@ -7,11 +7,6 @@ import wtf.sinn.poker.model.Rank;
 import java.util.List;
 
 final class StraightFlushRanker extends HandRanker {
-
-    StraightFlushRanker(HandRanker next) {
-        super(next);
-    }
-
     @Override
     protected boolean canHandle(Hand hand) {
         return isStraightFlush(hand);

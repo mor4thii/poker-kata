@@ -8,10 +8,6 @@ import java.util.Comparator;
 import java.util.stream.Stream;
 
 final class PairRanker extends HandRanker {
-    PairRanker(HandRanker next) {
-        super(next);
-    }
-
     @Override
     protected boolean canHandle(Hand hand) {
         return hand.getCardCountPerValue().containsKey(2L);

@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class PairRankerTest {
 
-    private final PairRanker pairRanker = new PairRanker(null);
+    private final PairRanker pairRanker = new PairRanker();
 
     @Test
     void should_detect_pair() {

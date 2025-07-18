@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class HighCardRankerTest {
 
-    private final HighCardRanker highCardRanker = new HighCardRanker(null);
+    private final HighCardRanker highCardRanker = new HighCardRanker();
 
     @Test
     void should_detect_high_card() {

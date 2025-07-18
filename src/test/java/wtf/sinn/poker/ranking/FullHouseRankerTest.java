@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class FullHouseRankerTest {
 
-    private final FullHouseRanker fullHouseRanker = new FullHouseRanker(null);
+    private final FullHouseRanker fullHouseRanker = new FullHouseRanker();
 
     @Test
     void should_detect_full_house() {

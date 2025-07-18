@@ -10,7 +10,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class StraightFlushRankerTest {
 
-    private final StraightFlushRanker straightFlushRanker = new StraightFlushRanker(null);
+    private final StraightFlushRanker straightFlushRanker = new StraightFlushRanker();
 
     @ParameterizedTest
     @EnumSource(CardSuit.class)

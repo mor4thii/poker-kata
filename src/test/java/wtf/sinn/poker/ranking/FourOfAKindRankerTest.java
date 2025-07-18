@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class FourOfAKindRankerTest {
 
-    private final FourOfAKindRanker fourOfAKindRanker = new FourOfAKindRanker(null);
+    private final FourOfAKindRanker fourOfAKindRanker = new FourOfAKindRanker();
 
     @Test
     void should_detect_four_of_a_kind() {

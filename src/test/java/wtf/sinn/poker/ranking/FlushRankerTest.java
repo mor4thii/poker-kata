@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class FlushRankerTest {
 
-    private final FlushRanker flushRanker = new FlushRanker(null);
+    private final FlushRanker flushRanker = new FlushRanker();
 
     @Test
     void should_detect_flush() {

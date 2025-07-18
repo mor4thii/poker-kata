@@ -5,10 +5,6 @@ import wtf.sinn.poker.model.HandRank;
 import wtf.sinn.poker.model.Rank;
 
 final class ThreeOfAKindRanker extends HandRanker {
-    ThreeOfAKindRanker(HandRanker next) {
-        super(next);
-    }
-
     @Override
     protected boolean canHandle(Hand hand) {
         return hand.getCardCountPerValue().containsKey(3L);

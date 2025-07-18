@@ -8,13 +8,13 @@ import java.util.List;
 
 abstract sealed class HandRanker
         permits FlushRanker, FourOfAKindRanker, FullHouseRanker, HighCardRanker, PairRanker, StraightFlushRanker, StraightRanker, ThreeOfAKindRanker, TwoPairsRanker {
-    protected final HandRanker next;
+    protected HandRanker next;
 
-    protected HandRanker(HandRanker next) {
+    void setNext(HandRanker next) {
         this.next = next;
     }
 
-    public HandRank evaluate(Hand hand) {
+    HandRank evaluate(Hand hand) {
         if (canHandle(hand)) {
             return buildHandRank(hand);
         }
@@ -29,4 +29,5 @@ abstract sealed class HandRanker
     protected abstract boolean canHandle(Hand hand);
 
     protected abstract HandRank buildHandRank(Hand hand);
+
 }

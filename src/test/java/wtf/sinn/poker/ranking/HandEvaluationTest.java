@@ -36,7 +36,7 @@ class HandEvaluationTest {
                     .collect(Collectors.toSet());
 
             final Set<Class<? extends HandRanker>> actual = new HashSet<>();
-            var current = HandEvaluation.RANKING_CHAIN;
+            var current = handEvaluation.rankingChain;
             while (current != null) {
                 actual.add(current.getClass());
                 current = current.next;

@@ -9,7 +9,7 @@ import static org.assertj.core.api.BDDAssertions.then;
 
 class StraightRankerTest {
 
-    private final StraightRanker fourOfAKindRanker = new StraightRanker(null);
+    private final StraightRanker fourOfAKindRanker = new StraightRanker();
 
     @Test
     void should_detect_straight() {

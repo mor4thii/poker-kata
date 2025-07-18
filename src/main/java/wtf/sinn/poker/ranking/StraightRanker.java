@@ -7,10 +7,6 @@ import wtf.sinn.poker.model.Rank;
 import java.util.List;
 
 final class StraightRanker extends HandRanker {
-    StraightRanker(HandRanker next) {
-        super(next);
-    }
-
     @Override
     protected boolean canHandle(Hand hand) {
         return hand.hasSequentialCards();
