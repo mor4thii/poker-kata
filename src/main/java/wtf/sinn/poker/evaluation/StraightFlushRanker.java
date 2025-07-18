@@ -21,6 +21,6 @@ public class StraightFlushRanker extends HandRanker {
     }
 
     private boolean isStraightFlush(Hand hand) {
-        return hand.hasOnlyCardsOfSameSuit() && hand.isUniqueAndSequential();
+        return hand.hasOnlyCardsOfSameSuit() && hand.hasSequentialCards();
     }
 }

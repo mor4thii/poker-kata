@@ -30,7 +30,7 @@ public record Hand(List<Card> cards) {
         return this.cards.stream().allMatch(it -> it.cardSuit().equals(suitAtHand));
     }
 
-    public boolean isUniqueAndSequential() {
+    public boolean hasSequentialCards() {
         final var sortedValues = this.cards.stream()
                 .map(it -> it.cardValue().getValue())
                 .sorted()
@@ -39,10 +39,7 @@ public record Hand(List<Card> cards) {
         int min = sortedValues.getFirst();
         int max = sortedValues.getLast();
 
-        boolean allUnique = !hasDuplicates(this.cards);
-        boolean isSequential = (max - min + 1) == sortedValues.size();
-
-        return allUnique && isSequential;
+        return (max - min + 1) == sortedValues.size();
     }
 
     private static boolean hasDuplicates(List<Card> cards) {
