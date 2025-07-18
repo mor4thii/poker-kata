@@ -166,5 +166,33 @@ public class HandTest {
 
             then(actual).isFalse();
         }
+
+        @Test
+        void should_detect_hands_that_are_sequential_in_values() {
+            final var hand = new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.DIAMONDS, CardValue.THREE),
+                    new Card(CardSuit.SPADES, CardValue.FOUR),
+                    new Card(CardSuit.CLUBS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SIX)));
+
+            final var actual = hand.hasSequentialCards();
+
+            then(actual).isTrue();
+        }
+
+        @Test
+        void should_detect_hands_that_are_not_sequential_in_values() {
+            final var hand = new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.DIAMONDS, CardValue.THREE),
+                    new Card(CardSuit.SPADES, CardValue.FOUR),
+                    new Card(CardSuit.CLUBS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SEVEN)));
+
+            final var actual = hand.hasSequentialCards();
+
+            then(actual).isFalse();
+        }
     }
 }
