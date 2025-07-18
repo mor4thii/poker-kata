@@ -3,16 +3,19 @@ package wtf.sinn.poker.model;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public record Hand(List<Card> cards) {
     public Hand {
+        Objects.requireNonNull(cards);
+
         if (cards.size() != 5) {
-            throw new IllegalArgumentException("A hand must consist of 5 cards");
+            throw new IllegalArgumentException("A hand must consist of 5 cards, got " + cards.size());
         }
 
         if (hasDuplicates(cards)) {
-            throw new IllegalArgumentException("A hand must not have duplicates");
+            throw new IllegalArgumentException("A hand must not have duplicates: " + cards);
         }
 
         cards = List.copyOf(cards);
