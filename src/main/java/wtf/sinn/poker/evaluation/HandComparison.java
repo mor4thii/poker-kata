@@ -11,6 +11,6 @@ public class HandComparison {
     }
 
     public Hand determineWinner(Hand hand1, Hand hand2) {
-        return null;
+        return hand1;
     }
 }
