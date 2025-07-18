@@ -47,12 +47,12 @@ to highest.
 
 Hand evaluation:
 
-- High Card
-- Pair
-- Two Pairs
-- Three of a Kind
-- Straight
-- Flush
+- High Card ✅
+- Pair ✅
+- Two Pairs ✅
+- Three of a Kind ✅
+- Straight ✅
+- Flush ✅
 - Full House ✅
 - Four of a kind ✅
 - Straight flush ✅
