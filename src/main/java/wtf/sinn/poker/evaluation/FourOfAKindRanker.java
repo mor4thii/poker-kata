@@ -20,7 +20,7 @@ public class FourOfAKindRanker extends HandRanker {
     }
 
     private static boolean isFourOfAKind(Hand hand) {
-        final var cardsGroupedByValue = hand.getCardsGroupedByValue();
+        final var cardsGroupedByValue = hand.getCardCountByValue();
 
         return cardsGroupedByValue.containsValue(4L);
     }

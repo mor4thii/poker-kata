@@ -15,7 +15,7 @@ public record Hand(List<Card> cards) {
         }
     }
 
-    public Map<CardValue, Long> getCardsGroupedByValue() {
+    public Map<CardValue, Long> getCardCountByValue() {
         return this.cards.stream()
                 .collect(Collectors.groupingBy(Card::cardValue,
                         Collectors.collectingAndThen(
