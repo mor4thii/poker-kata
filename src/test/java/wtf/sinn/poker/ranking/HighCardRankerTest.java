@@ -15,13 +15,13 @@ class HighCardRankerTest {
     void should_detect_high_card() {
         final var hand = new Hand(List.of(
                 new Card(CardSuit.HEARTS, CardValue.TWO),
-                new Card(CardSuit.CLUBS, CardValue.TWO),
-                new Card(CardSuit.SPADES, CardValue.TWO),
-                new Card(CardSuit.DIAMONDS, CardValue.TWO),
-                new Card(CardSuit.HEARTS, CardValue.THREE)
+                new Card(CardSuit.CLUBS, CardValue.FOUR),
+                new Card(CardSuit.SPADES, CardValue.SIX),
+                new Card(CardSuit.DIAMONDS, CardValue.EIGHT),
+                new Card(CardSuit.HEARTS, CardValue.TEN)
         ));
 
-        final var expected = new HandRank(Rank.HIGH_CARD, List.of(CardValue.THREE, CardValue.TWO));
+        final var expected = new HandRank(Rank.HIGH_CARD, List.of(CardValue.TEN, CardValue.EIGHT, CardValue.SIX, CardValue.FOUR, CardValue.TWO));
 
         final var actual = highCardRanker.evaluate(hand);
 
