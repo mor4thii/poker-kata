@@ -62,9 +62,9 @@ Rank comparison (in order of importance):
 - Introduce Hand class w/ class invariants "no duplicate cards" and "exactly 5 cards" ✅
 - Strength of rank as first criterion
 - High card and other rank-specific stuff as secondary criteria, or "lexicographic" comparison
-- Precondition checks for the hand card (assert 5 cards, assert no duplicates)
+- Precondition checks for the hand card (assert 5 cards, assert no duplicates) ✅
 - Some corner case tests like simple cheating detection (e.g., duplicate cards)
-- Tinker with new language features like JEP 301 (Enhanced enums) or JEP 361 (Switch Expressions)
+- Tinker with new language features like JEP 301 (Enhanced enums) or JEP 361 (Switch Expressions) 🚧
 - Performance concerns: Heavy usage of streams, check for repeated same/similar List operations
 
 ## Notes
