@@ -174,5 +174,19 @@ public class HandTest {
 
             then(actual).isFalse();
         }
+
+        @Test
+        void should_sort_card_values_in_descending_order() {
+            final var hand = new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.DIAMONDS, CardValue.THREE),
+                    new Card(CardSuit.SPADES, CardValue.FOUR),
+                    new Card(CardSuit.CLUBS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SEVEN)));
+
+            final var actual = hand.cardValuesInDescendingOrder();
+
+            then(actual).containsExactly(CardValue.SEVEN, CardValue.FIVE, CardValue.FOUR, CardValue.THREE, CardValue.TWO);
+        }
     }
 }

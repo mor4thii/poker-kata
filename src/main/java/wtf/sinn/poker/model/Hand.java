@@ -16,6 +16,10 @@ public record Hand(List<Card> cards) {
         }
     }
 
+    public List<CardValue> cardValuesInDescendingOrder() {
+        return cards.stream().map(Card::cardValue).sorted(Comparator.reverseOrder()).toList();
+    }
+
     public CardValue highestCardValue() {
         return cards.stream()
                 .map(Card::cardValue)
