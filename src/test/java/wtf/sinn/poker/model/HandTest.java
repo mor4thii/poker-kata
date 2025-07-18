@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatCode;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
@@ -66,17 +65,10 @@ public class HandTest {
                     new Card(CardSuit.HEARTS, CardValue.FIVE),
                     new Card(CardSuit.HEARTS, CardValue.SIX)));
 
-            final var actual = hand.getCardCountByValue();
+            final var actual = hand.getCardCountPerValue();
 
-            then(actual).containsExactlyInAnyOrderEntriesOf(
-                    Map.of(
-                            CardValue.TWO, 1L,
-                            CardValue.THREE, 1L,
-                            CardValue.FOUR, 1L,
-                            CardValue.FIVE, 1L,
-                            CardValue.SIX, 1L
-                    )
-            );
+            then(actual).hasSize(1);
+            then(actual.get(1L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.TWO, CardValue.THREE, CardValue.FOUR, CardValue.FIVE, CardValue.SIX));
         }
 
         @Test
@@ -88,16 +80,11 @@ public class HandTest {
                     new Card(CardSuit.HEARTS, CardValue.FIVE),
                     new Card(CardSuit.HEARTS, CardValue.SIX)));
 
-            final var actual = hand.getCardCountByValue();
+            final var actual = hand.getCardCountPerValue();
 
-            then(actual).containsExactlyInAnyOrderEntriesOf(
-                    Map.of(
-                            CardValue.TWO, 2L,
-                            CardValue.FOUR, 1L,
-                            CardValue.FIVE, 1L,
-                            CardValue.SIX, 1L
-                    )
-            );
+            then(actual).hasSize(2);
+            then(actual.get(1L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.FOUR, CardValue.FIVE, CardValue.SIX));
+            then(actual.get(2L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.TWO));
         }
 
         @Test
@@ -109,15 +96,11 @@ public class HandTest {
                     new Card(CardSuit.HEARTS, CardValue.FIVE),
                     new Card(CardSuit.HEARTS, CardValue.SIX)));
 
-            final var actual = hand.getCardCountByValue();
+            final var actual = hand.getCardCountPerValue();
 
-            then(actual).containsExactlyInAnyOrderEntriesOf(
-                    Map.of(
-                            CardValue.TWO, 3L,
-                            CardValue.FIVE, 1L,
-                            CardValue.SIX, 1L
-                    )
-            );
+            then(actual).hasSize(2);
+            then(actual.get(1L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.FIVE, CardValue.SIX));
+            then(actual.get(3L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.TWO));
         }
 
         @Test
@@ -129,14 +112,11 @@ public class HandTest {
                     new Card(CardSuit.DIAMONDS, CardValue.TWO),
                     new Card(CardSuit.HEARTS, CardValue.SIX)));
 
-            final var actual = hand.getCardCountByValue();
+            final var actual = hand.getCardCountPerValue();
 
-            then(actual).containsExactlyInAnyOrderEntriesOf(
-                    Map.of(
-                            CardValue.TWO, 4L,
-                            CardValue.SIX, 1L
-                    )
-            );
+            then(actual).hasSize(2);
+            then(actual.get(1L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.SIX));
+            then(actual.get(4L)).containsExactlyInAnyOrderElementsOf(List.of(CardValue.TWO));
         }
 
         @Test

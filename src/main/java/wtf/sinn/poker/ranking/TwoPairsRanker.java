@@ -13,9 +13,9 @@ final class TwoPairsRanker extends HandRanker {
 
     @Override
     protected boolean canHandle(Hand hand) {
-        final var cardCountByValue = hand.getCardCountByValue();
+        final var cardCountByValue = hand.getCardCountPerValue();
 
-        return cardCountByValue.values().stream().filter(it -> Long.valueOf(2L).equals(it)).count() == 2;
+        return cardCountByValue.keySet().stream().filter(it -> Long.valueOf(2L).equals(it)).count() == 2;
     }
 
     @Override

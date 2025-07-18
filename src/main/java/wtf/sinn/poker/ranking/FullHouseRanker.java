@@ -22,8 +22,8 @@ final class FullHouseRanker extends HandRanker {
     }
 
     private boolean isFullHouse(Hand hand) {
-        final var cardsGroupedByValue = hand.getCardCountByValue();
+        final var cardsGroupedByValue = hand.getCardCountPerValue();
 
-        return cardsGroupedByValue.containsValue(3L) && cardsGroupedByValue.containsValue(2L);
+        return cardsGroupedByValue.containsKey(3L) && cardsGroupedByValue.containsKey(2L);
     }
 }

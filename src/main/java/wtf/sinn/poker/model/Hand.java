@@ -23,13 +23,18 @@ public record Hand(List<Card> cards) {
                 .orElseThrow();
     }
 
-    public Map<CardValue, Long> getCardCountByValue() {
-        return this.cards.stream()
-                .collect(Collectors.groupingBy(Card::cardValue,
-                        Collectors.collectingAndThen(
-                                Collectors.mapping(Card::cardSuit, Collectors.toSet()),
-                                set -> (long) set.size()
-                        )));
+    public Map<Long, List<CardValue>> getCardCountPerValue() {
+        final var counts = this.cards.stream()
+                .collect(Collectors.groupingBy(
+                        Card::cardValue,
+                        Collectors.counting())
+                );
+
+        return counts.entrySet().stream()
+                .collect(Collectors.groupingBy(
+                        Map.Entry::getValue,
+                        Collectors.mapping(Map.Entry::getKey, Collectors.toList())
+                ));
     }
 
     public boolean hasOnlyCardsOfSameSuit() {

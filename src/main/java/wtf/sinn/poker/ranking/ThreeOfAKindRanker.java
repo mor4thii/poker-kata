@@ -13,7 +13,7 @@ final class ThreeOfAKindRanker extends HandRanker {
 
     @Override
     protected boolean canHandle(Hand hand) {
-        return hand.getCardCountByValue().containsValue(3L);
+        return hand.getCardCountPerValue().containsKey(3L);
     }
 
     @Override

@@ -13,7 +13,7 @@ final class PairRanker extends HandRanker {
 
     @Override
     protected boolean canHandle(Hand hand) {
-        return hand.getCardCountByValue().containsValue(2L);
+        return hand.getCardCountPerValue().containsKey(2L);
     }
 
     @Override
