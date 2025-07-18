@@ -38,6 +38,17 @@ public class HandComparisonIntegrationTest {
 
             then(actual).hasValue(highestStraightFlushHand);
         }
+
+        @Test
+        void should_detect_a_draw_for_two_straight_flushes_with_same_high_card() {
+            // This is technically not possible, but suits do not contribute to scoring, so this is fine
+            final var straightFlushHand = lowestStraightFlushHand();
+            final var otherStraightFlushHand = lowestStraightFlushHand();
+
+            final var actual = handComparison.determineWinner(straightFlushHand, otherStraightFlushHand);
+
+            then(actual).isEmpty();
+        }
     }
 
     private Hand lowestStraightFlushHand() {
