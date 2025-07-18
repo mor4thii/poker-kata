@@ -138,5 +138,33 @@ public class HandTest {
                     )
             );
         }
+
+        @Test
+        void should_detect_hands_with_cards_of_the_same_suit() {
+            final var hand = new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.HEARTS, CardValue.THREE),
+                    new Card(CardSuit.HEARTS, CardValue.FOUR),
+                    new Card(CardSuit.HEARTS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SIX)));
+
+            final var actual = hand.hasOnlyCardsOfSameSuit();
+
+            then(actual).isTrue();
+        }
+
+        @Test
+        void should_detect_hands_with_cards_of_different_suit() {
+            final var hand = new Hand(List.of(
+                    new Card(CardSuit.HEARTS, CardValue.TWO),
+                    new Card(CardSuit.DIAMONDS, CardValue.THREE),
+                    new Card(CardSuit.HEARTS, CardValue.FOUR),
+                    new Card(CardSuit.HEARTS, CardValue.FIVE),
+                    new Card(CardSuit.HEARTS, CardValue.SIX)));
+
+            final var actual = hand.hasOnlyCardsOfSameSuit();
+
+            then(actual).isFalse();
+        }
     }
 }
