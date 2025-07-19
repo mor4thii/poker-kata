@@ -66,6 +66,8 @@ Rank comparison (in order of importance):
 - Some corner case tests like simple cheating detection (e.g., duplicate cards) ✅
 - Tinker with new language features like JEP 301 (Enhanced enums) or JEP 361 (Switch Expressions) 🚧
 - Performance concerns: Heavy usage of streams, check for repeated same/similar List operations
+    - Especially `getCardCountPerValue`'s `groupingBy` call is called often and heavy on memory allocations, see JFR (~
+      35% of allocation during test execution)
 
 ## Notes
 
