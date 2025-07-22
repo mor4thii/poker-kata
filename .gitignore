@@ -37,3 +37,8 @@ Icon
 
 ### Maven ###
 target/
+
+### Eclipse/jdtls.nvim ###
+.settings
+.classpath
+.project
